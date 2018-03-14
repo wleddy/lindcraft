@@ -5,7 +5,7 @@ from datetime import date
 class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)
     displayOrder = models.IntegerField(blank=True, null=False, default=0)
-    def __unicode__(self):
+    def __str__(self):
         return self.name
     class Meta:
         ordering =['displayOrder','name']
@@ -17,7 +17,7 @@ class Product(models.Model):
     desc = models.TextField("Product Description",default="",blank=True)
     image = models.CharField("Full-size Image Path",null=True,default='/images/products/sample.jpg',blank=True,max_length=100)
     displayOrder = models.IntegerField(blank=True, null=False, default=0)
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -37,7 +37,7 @@ class Model(models.Model):
     class Meta:
         ordering =['product__category__displayOrder','model']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.model
 
 def productSelect(prod_id=0):
