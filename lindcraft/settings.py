@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,6 +22,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'm)27fs-vyf%j9@@m^wzy)^1w2zqicy0t31v!(=-1n&cu2nj_%m'
+
+# The instance directory contains the real secrets and is not commited to git
+INSTANCE_PATH = os.path.join(BASE_DIR, "instance/")
+d = Path(INSTANCE_PATH)
+if not d.exists():
+    d.mkdir(mode=0o750)
+    
+s = Path(os.path.join(d.name,"settings.py"))
+if not s.exists():
+    s.touch(mode=0o750, exist_ok=True)
+
+
+import instance.settings
+#REAL_SECRET_KEY, SMTP_PASSWORD, SMTP_HOST, EMAIL_ADDRESS
+SECRET_KEY = instance.settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
