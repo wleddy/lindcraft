@@ -35,8 +35,11 @@ if not s.exists():
 
 
 import instance.settings
-#REAL_SECRET_KEY, SMTP_PASSWORD, SMTP_HOST, EMAIL_ADDRESS
 SECRET_KEY = instance.settings.SECRET_KEY
+SMTP_PASSWORD = instance.settings.SMTP_PASSWORD
+SMTP_HOST = instance.settings.SMTP_HOST
+SMTP_PORT = instance.settings.SMTP_PORT
+EMAIL_ADDRESS = instance.settings.EMAIL_ADDRESS
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
