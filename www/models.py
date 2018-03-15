@@ -62,9 +62,8 @@ def navSetup():
     display_list = model_list.filter(category__name__istartswith="Display")
     parking_list = model_list.filter(category__name__istartswith="Parking")
     model_list = Model.objects.select_related().filter(active=True)
-    #effectiveDate = model_list.latest(field_name='price_change_date')
-    #effectiveDate = effectiveDate.price_change_date
-    effectiveDate = "3/13/17"
+    effectiveDate = model_list.latest(field_name='price_change_date')
+    effectiveDate = effectiveDate.price_change_date
 
     d = {'mediaURL': mediaURL, 'display_list':display_list, 
         'parking_list': parking_list, 'effectiveDate':effectiveDate}
