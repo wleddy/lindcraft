@@ -32,7 +32,10 @@ if not d.exists():
 s = Path(os.path.join(d.name,"settings.py"))
 if not s.exists():
     s.touch(mode=0o750, exist_ok=True)
-
+    s.open(mode='w')
+    i = Path(os.path.join(BASE_DIR,"default_instance_settings.txt")) 
+    s.write_text(i.read_text())
+    
 #some defaults:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'm)27fs-vyf%j9@@m^wzy)^1w2zqicy0t31v!(=-1n&cu2nj_%m'

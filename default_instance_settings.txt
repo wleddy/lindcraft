@@ -1,0 +1,15 @@
+# The Real Secret Settings file
+from lindcraft.settings import DEBUG
+
+SECRET_KEY = 'AReallyBigSecret'
+EMAIL_HOST = "mail.example.com"
+EMAIL_HOST_USER = "ME"
+EMAIL_HOST_PASSWORD = "pass"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+
+EMAIL_ADDRESS = "you@example.com"
+ADMIN_EMAIL = "me"
+
+if DEBUG:
+    EMAIL_ADDRESS =ADMIN_EMAIL
