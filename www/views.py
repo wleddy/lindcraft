@@ -1,6 +1,6 @@
 # lindcraft/views.py
 
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render
 from .models import productSelect, navSetup
 
 #### Get a dictionary that contains the querysets and some other vars needed by the
@@ -13,7 +13,7 @@ d['exit'] = get_exits()
 
 def index(request):
     d['pageName'] = 'Welcome'
-    return render_to_response('index.html', d)
+    return render(request, 'index.html', d)
 
 def product(request, prod_id="0"):
     model_list = productSelect(int(prod_id))
@@ -28,13 +28,13 @@ def product(request, prod_id="0"):
     else:
         d['pageName'] = "No models found"
     
-    return render_to_response('product.html', d)
+    return render(request, 'product.html', d)
 
 def prices(request):
     d['model_list'] = productSelect() # Get all active products
     d['pageName'] = 'Prices'
     d['showGroups'] = True
-    return render_to_response('prices.html', d)
+    return render(request, 'prices.html', d)
 
 from django.core.mail import send_mail, BadHeaderError
 from lindcraft.settings import DEBUG, EMAIL_ADDRESS, ADMIN_EMAIL
@@ -58,19 +58,19 @@ def contact(request):
             
         return render(request,'contact.html', d)
     else:
-        return render_to_response('contact.html', d)
+        return render(request, 'contact.html', d)
         
 
 def about(request):
     d['pageName'] = 'About'
-    return render_to_response('about.html', d)
+    return render(request, 'about.html', d)
 
 def parkingIntro(request):
     d['pageName'] = 'Parking Racks'
-    return render_to_response('parkingIntro.html', d)
+    return render(request, 'parkingIntro.html', d)
 
 def displayIntro(request):
     d['pageName'] = 'Display Racks'
-    return render_to_response('displayIntro.html', d)
+    return render(request, 'displayIntro.html', d)
 
     
