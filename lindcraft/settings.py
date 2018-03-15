@@ -20,9 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'm)27fs-vyf%j9@@m^wzy)^1w2zqicy0t31v!(=-1n&cu2nj_%m'
-
 # The instance directory contains the real secrets and is not commited to git
 INSTANCE_PATH = os.path.join(BASE_DIR, "instance/")
 d = Path(INSTANCE_PATH)
@@ -33,11 +30,19 @@ s = Path(os.path.join(d.name,"settings.py"))
 if not s.exists():
     s.touch(mode=0o750, exist_ok=True)
 
+#some defaults:
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'm)27fs-vyf%j9@@m^wzy)^1w2zqicy0t31v!(=-1n&cu2nj_%m'
+SMTP_HOST = "mail.example.com"
+SMTP_PASSWORD = "pass"
+SMTP_PORT = 25
+EMAIL_ADDRESS = "you@example.com"
+
 
 import instance.settings
 SECRET_KEY = instance.settings.SECRET_KEY
-SMTP_PASSWORD = instance.settings.SMTP_PASSWORD
 SMTP_HOST = instance.settings.SMTP_HOST
+SMTP_PASSWORD = instance.settings.SMTP_PASSWORD
 SMTP_PORT = instance.settings.SMTP_PORT
 EMAIL_ADDRESS = instance.settings.EMAIL_ADDRESS
 
