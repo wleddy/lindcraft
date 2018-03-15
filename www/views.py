@@ -1,6 +1,6 @@
 # lindcraft/views.py
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from .models import productSelect, navSetup
 
 #### Get a dictionary that contains the querysets and some other vars needed by the
@@ -36,7 +36,8 @@ def prices(request):
     d['showGroups'] = True
     return render_to_response('prices.html', d)
 
-from django.core.mail import send_mail, BadHeaderError, mail_admins, mail_managers
+from django.core.mail import send_mail, BadHeaderError
+from lindcraft.settings import DEBUG, EMAIL_ADDRESS, ADMIN_EMAIL
 def contact(request):
     d['pageName'] = 'Contact Us'
     d['emailSentOk'] = False
@@ -50,21 +51,15 @@ def contact(request):
         d['message'] = message
         from_email = request.POST.get('Quote_email', d['exit']['emailAddress'])
         try:
-            send_mail("Lindcraft Web Contact", message, from_email ,['lindcraft@att.net', 'bill@williesworkshop.net'], auth_user="mailer@williesworkshop.net", auth_password="floodprotection")
-            #mail_admins("Lindcraft Web Contact", message, fail_silently=False)
-            #mail_managers("Lindcraft Web Contact", message, fail_silently=False)
+            send_mail("Lindcraft Web Contact", message, from_email ,[EMAIL_ADDRESS,ADMIN_EMAIL],fail_silently=(not DEBUG))
             d['emailSentOk'] = True
         except BadHeaderError:
             return HttpResponse('Invalid header found.')
             
-        return render_to_response('contact.html', d)
+        return render(request,'contact.html', d)
     else:
         return render_to_response('contact.html', d)
         
-
-def links(request):
-    d['pageName'] = 'Links'
-    return render_to_response('links.html', d)
 
 def about(request):
     d['pageName'] = 'About'

@@ -39,7 +39,7 @@ EMAIL_HOST_PASSWORD = "pass"
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_ADDRESS = "you@example.com"
-
+ADMIN_EMAIL = "me"
 
 import instance.settings
 SECRET_KEY = instance.settings.SECRET_KEY
@@ -49,6 +49,8 @@ EMAIL_HOST_PASSWORD = instance.settings.EMAIL_HOST_PASSWORD
 EMAIL_PORT = instance.settings.EMAIL_PORT
 EMAIL_USE_SSL = instance.settings.EMAIL_USE_SSL
 EMAIL_ADDRESS = instance.settings.EMAIL_ADDRESS
+ADMIN_EMAIL = instance.settings.ADMIN_EMAIL
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,7 +75,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',

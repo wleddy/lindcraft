@@ -12,7 +12,7 @@
 		So, you don't see exactly what you'd like, or maybe you need a quote on
 		a showroom full of racks. Whatever you need, we're here to help.
 	</p>
-	<form action="{{ exit.contact }}" method="post" name="contactForm">
+	<form action="{{ exit.contact }}" method="post" name="contactForm">{% csrf_token %}
 		<table id="contactFrom" summary="Special Quotation form">
 		<tr>
 			<th align="right">Your Name:</th>
