@@ -33,17 +33,21 @@ if not s.exists():
 #some defaults:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'm)27fs-vyf%j9@@m^wzy)^1w2zqicy0t31v!(=-1n&cu2nj_%m'
-SMTP_HOST = "mail.example.com"
-SMTP_PASSWORD = "pass"
-SMTP_PORT = 25
+EMAIL_HOST = "mail.example.com"
+EMAIL_HOST_USER = "ME"
+EMAIL_HOST_PASSWORD = "pass"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
 EMAIL_ADDRESS = "you@example.com"
 
 
 import instance.settings
 SECRET_KEY = instance.settings.SECRET_KEY
-SMTP_HOST = instance.settings.SMTP_HOST
-SMTP_PASSWORD = instance.settings.SMTP_PASSWORD
-SMTP_PORT = instance.settings.SMTP_PORT
+EMAIL_HOST = instance.settings.EMAIL_HOST
+EMAIL_HOST_USER = instance.settings.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = instance.settings.EMAIL_HOST_PASSWORD
+EMAIL_PORT = instance.settings.EMAIL_PORT
+EMAIL_USE_SSL = instance.settings.EMAIL_USE_SSL
 EMAIL_ADDRESS = instance.settings.EMAIL_ADDRESS
 
 # SECURITY WARNING: don't run with debug turned on in production!
