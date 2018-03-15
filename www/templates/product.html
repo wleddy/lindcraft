@@ -1,12 +1,12 @@
 {% extends "id.html" %}
-
+{% load static %}
 {% block content %}
 	<h1>{{ pageName }}</h1>
 	{% if model_list %}
 		<div class="productDesc">
-				<p class="productImage"><img src="{{ mediaURL }}{{ prodImage }}" alt="Picture of {{ prodName }}" ></p>
+				<p class="productImage"><img src="{% static prodImage %}" alt="Picture of {{ prodName }}" ></p>
 					{{ prodDesc|linebreaks }} 
-					<p class="noprint">Get the <a href="{{ mediaURL }}/docs/Lindcraft Assembly Instructions.pdf" >Assembly Instructions</a> here.</p>
+					<p class="noprint">Get the <a href="{% static "/docs/Lindcraft Assembly Instructions.pdf"%}" >Assembly Instructions</a> here.</p>
 			</div>
 	<div id="productPriceTableContain" >
 		<h2>Prices</h2>
