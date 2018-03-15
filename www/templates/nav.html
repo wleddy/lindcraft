@@ -1,0 +1,51 @@
+{% comment %} nav.html {% endcomment %}
+
+<div class="nav noprint" >
+	<div  class="nav_background">
+		<p><a href="{{ exit.displayInfo }}" >Display Racks</a></p>
+	</div>
+	<div class="nav_image_group" >
+		<p>
+			{% for product in display_list %}
+			<a href="{{ exit.product }}/{{ product.id }}/"  title="{{ product.name }}"><img class="nav_image" src="{{ mediaURL }}{{ product.image|cut:'.jpg' }}_sm.jpg" alt="{{ product.name }}"></a>
+			{% endfor %}
+		</p>
+	</div>
+	<div class="nav_background">
+		<p><a href="{{ exit.parkingInfo }}" >Parking Racks</a></p>
+	</div>
+	<div class="nav_image_group" >
+		<p>
+			{% for product in parking_list %}
+			<a href="{{ exit.product }}/{{ product.id }}/"  title="{{ product.name }}"><img class="nav_image" src="{{ mediaURL }}{{ product.image|cut:'.jpg' }}_sm.jpg" alt="{{ product.name }}"></a>
+			{% endfor %}
+		</p>
+	</div>
+	<div class="nav_background">
+		<div >
+			<p><a href="{{ exit.prices }}" >Price List</a></p>
+		</div>
+	</div>
+
+
+	<div class="nav_background">
+		<div >
+			<p><a href="{{ exit.contact }}" >Special Quotes</a></p>
+		</div>
+	</div>
+
+
+	<div class="nav_background">
+		<div >
+			<p><a href="{{ exit.about }}" >About Lindcraft</a></p>
+		</div>
+	</div>
+
+<!--
+	<div class="nav_background">
+		<div >
+			<p><a href="{{ exit.links }}" >Links</a></p>
+		</div>
+	</div>
+-->
+</div>
