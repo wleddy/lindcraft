@@ -31,6 +31,8 @@ EMAIL_USE_SSL = True
 EMAIL_ADDRESS = "you@example.com"
 ADMIN_EMAIL = "me"
 
+MANAGERS = []
+ADMINS = []
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
@@ -39,6 +41,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     "lindcraft/static",
 ]
+MEDIA_URL = ""
+MEDIA_ROOT = ""
+
 ALLOWED_HOSTS = [
     # If DEBUG is False at least one allowed host is required
     '127.0.0.1',
@@ -62,8 +67,10 @@ if not s.exists():
     s.write_text(i.read_text())
 
 #Get the local settings
-from instance.local_settings import DEBUG, SECRET_KEY, EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_PORT, EMAIL_USE_SSL, \
-    EMAIL_ADDRESS, ADMIN_EMAIL, STATIC_URL, STATICFILES_DIRS, ALLOWED_HOSTS
+from instance.local_settings import DEBUG, SECRET_KEY, EMAIL_HOST, EMAIL_HOST_USER, \
+    EMAIL_HOST_PASSWORD, EMAIL_PORT, EMAIL_USE_SSL, \
+    EMAIL_ADDRESS, ADMIN_EMAIL, ADMIN_EMAIL, ADMINS, MANAGERS, \
+    STATIC_URL, STATICFILES_DIRS, MEDIA_URL, MEDIA_ROOT, ALLOWED_HOSTS
 
 # Application definition
 
