@@ -1,15 +1,34 @@
-# The Real Secret Settings file
-from lindcraft.settings import DEBUG
+# local_settings.py
 
-SECRET_KEY = 'AReallyBigSecret'
+# The Real Secret Settings file
+from lindcraft.settings import DEBUG, SECRET_KEY, EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_PORT, EMAIL_USE_SSL, \
+    EMAIL_ADDRESS, ADMIN_EMAIL, STATIC_URL, STATICFILES_DIRS, ALLOWED_HOSTS
+
+DEBUG = True
+
+SECRET_KEY = 'changethistoaverylongrandomstring'
 EMAIL_HOST = "mail.example.com"
-EMAIL_HOST_USER = "ME"
+EMAIL_HOST_USER = "me@example.com"
 EMAIL_HOST_PASSWORD = "pass"
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 
-EMAIL_ADDRESS = "you@example.com"
-ADMIN_EMAIL = "me"
+EMAIL_ADDRESS ="you@example.com"
+ADMIN_EMAIL = "me@example.com"
 
 if DEBUG:
     EMAIL_ADDRESS =ADMIN_EMAIL
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.0/howto/static-files/
+STATIC_URL = '/static/'
+
+
+STATICFILES_DIRS = [
+    "lindcraft/static",
+]
+
+ALLOWED_HOSTS = [
+    # If DEBUG is False at least one allowed host is required 
+    '127.0.0.1',
+]

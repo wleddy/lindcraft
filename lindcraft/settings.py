@@ -14,31 +14,15 @@ import os
 from pathlib import Path
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-
-# The instance directory contains the real secrets and is not commited to git
-INSTANCE_PATH = os.path.join(BASE_DIR, "instance/")
-d = Path(INSTANCE_PATH)
-if not d.exists():
-    d.mkdir(mode=0o750)
-    
-s = Path(os.path.join(d.name,"settings.py"))
-if not s.exists():
-    s.touch(mode=0o750, exist_ok=True)
-    s.open(mode='w')
-    i = Path(os.path.join(BASE_DIR,"default_instance_settings.txt")) 
-    s.write_text(i.read_text())
-    
 #some defaults:
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'm)27fs-vyf%j9@@m^wzy)^1w2zqicy0t31v!(=-1n&cu2nj_%m'
+SECRET_KEY = 'somereallylongkeyvalue'
 EMAIL_HOST = "mail.example.com"
 EMAIL_HOST_USER = "ME"
 EMAIL_HOST_PASSWORD = "pass"
@@ -47,19 +31,39 @@ EMAIL_USE_SSL = True
 EMAIL_ADDRESS = "you@example.com"
 ADMIN_EMAIL = "me"
 
-import instance.settings
-SECRET_KEY = instance.settings.SECRET_KEY
-EMAIL_HOST = instance.settings.EMAIL_HOST
-EMAIL_HOST_USER = instance.settings.EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = instance.settings.EMAIL_HOST_PASSWORD
-EMAIL_PORT = instance.settings.EMAIL_PORT
-EMAIL_USE_SSL = instance.settings.EMAIL_USE_SSL
-EMAIL_ADDRESS = instance.settings.EMAIL_ADDRESS
-ADMIN_EMAIL = instance.settings.ADMIN_EMAIL
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+STATIC_URL = '/static/'
 
-ALLOWED_HOSTS = []
+STATICFILES_DIRS = [
+    "lindcraft/static",
+]
+ALLOWED_HOSTS = [
+    # If DEBUG is False at least one allowed host is required
+    '127.0.0.1',
+]
 
+# The instance directory contains the real secrets and is not commited to git
+# It also allows settings to be modified in the deployment server
+
+# create the instance directory if needed
+INSTANCE_PATH = os.path.join(BASE_DIR, "instance/")
+d = Path(INSTANCE_PATH)
+if not d.exists():
+    d.mkdir(mode=0o750)
+    
+#create a default instance/local_settings file if none exists
+s = Path(os.path.join(d.name,"local_settings.py"))
+if not s.exists():
+    s.touch(mode=0o750, exist_ok=True)
+    s.open(mode='w')
+    i = Path(os.path.join(BASE_DIR,"default_instance_settings.txt")) 
+    s.write_text(i.read_text())
+
+#Get the local settings
+from instance.local_settings import DEBUG, SECRET_KEY, EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_PORT, EMAIL_USE_SSL, \
+    EMAIL_ADDRESS, ADMIN_EMAIL, STATIC_URL, STATICFILES_DIRS, ALLOWED_HOSTS
 
 # Application definition
 
@@ -148,11 +152,4 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    "lindcraft/static",
-]
