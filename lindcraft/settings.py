@@ -37,6 +37,7 @@ ADMINS = []
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
 
 STATICFILES_DIRS = [
     "lindcraft/static",
@@ -70,7 +71,7 @@ if not s.exists():
 from instance.local_settings import DEBUG, SECRET_KEY, EMAIL_HOST, EMAIL_HOST_USER, \
     EMAIL_HOST_PASSWORD, EMAIL_PORT, EMAIL_USE_SSL, \
     EMAIL_ADDRESS, ADMIN_EMAIL, ADMIN_EMAIL, ADMINS, MANAGERS, \
-    STATIC_URL, STATICFILES_DIRS, MEDIA_URL, MEDIA_ROOT, ALLOWED_HOSTS
+    STATIC_URL, STATIC_ROOT, STATICFILES_DIRS, MEDIA_URL, MEDIA_ROOT, ALLOWED_HOSTS
 
 # Application definition
 
@@ -150,7 +151,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Los_Angeles'
 
 USE_I18N = True
 
