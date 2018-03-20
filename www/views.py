@@ -5,17 +5,23 @@ from .models import productSelect, navSetup
 
 #### Get a dictionary that contains the querysets and some other vars needed by the
 #### Nav.html and other templates
-d = navSetup()
 
 # Get a directory of the common URLs used in the templates and add to context
 from .exits import get_exits
-d['exit'] = get_exits()
+
+
+def getNewContext():
+    d = navSetup()
+    d['exit'] = get_exits()
+    return d
 
 def index(request):
+    d = getNewContext()
     d['pageName'] = 'Welcome'
     return render(request, 'index.html', d)
 
 def product(request, prod_id="0"):
+    d = getNewContext()
     model_list = productSelect(int(prod_id))
     d['model_list'] = model_list
     d['showGroups'] = False
@@ -31,6 +37,7 @@ def product(request, prod_id="0"):
     return render(request, 'product.html', d)
 
 def prices(request):
+    d = getNewContext()
     d['model_list'] = productSelect() # Get all active products
     d['pageName'] = 'Prices'
     d['showGroups'] = True
@@ -39,6 +46,7 @@ def prices(request):
 from django.core.mail import send_mail, BadHeaderError
 from lindcraft.settings import DEBUG, EMAIL_ADDRESS, ADMIN_EMAIL
 def contact(request):
+    d = getNewContext()
     d['pageName'] = 'Contact Us'
     d['emailSentOk'] = False
     if not request.POST.get('Quote_Coupon', '') and request.POST.get('Quote_Question', '') :
@@ -62,14 +70,17 @@ def contact(request):
         
 
 def about(request):
+    d = getNewContext()
     d['pageName'] = 'About'
     return render(request, 'about.html', d)
 
 def parkingIntro(request):
+    d = getNewContext()
     d['pageName'] = 'Parking Racks'
     return render(request, 'parkingIntro.html', d)
 
 def displayIntro(request):
+    d = getNewContext()
     d['pageName'] = 'Display Racks'
     return render(request, 'displayIntro.html', d)
 
