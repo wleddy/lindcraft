@@ -5,3 +5,6 @@ manage.py
 polls/
 instance/
 
+# ignore pycharm ideas
+.idea
+
